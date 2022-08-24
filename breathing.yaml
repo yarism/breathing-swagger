@@ -33,7 +33,7 @@ components:
                 example: Permission denied.
 
   parameters:
-    task:
+    exercise:
       name: id
       in: query
       required: true
@@ -45,6 +45,13 @@ paths:
     get:
       summary: Get exercises
       description: Get a history of exercises
+      parameters:
+        - in: query
+          name: limit
+          description: The number of items to return
+          schema: 
+            type: integer
+            example: 30
       responses:
         '200':
           description: OK
@@ -55,8 +62,8 @@ paths:
                 items: 
                   $ref: '#/components/schemas/Exercise'
     post:
-      summary: Create a exercise
-      description: Creates a new exercise
+      summary: Complete a exercise
+      description: Information about what exercise a user has completed
       parameters:
         - name: level
           in: query
