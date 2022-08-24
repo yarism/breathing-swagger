@@ -1,0 +1,106 @@
+openapi: 3.0.0
+info:
+  title: Breathing project
+  description: API documentation for the breathing project...
+  version: "1.0"
+servers:
+  - url: 'https://example.com/taskmanager/'
+components:
+  schemas:
+    Exercise:
+      type: object
+      properties:
+        level:
+          type: string
+          example: 'Easy'
+          description: 'Exercise level'
+        date:
+          type: string
+          example: '2022-08-23T14:48:00'
+          description: 'Date'
+
+  responses:
+    error:
+      description: ERROR
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: Describes the error in a human-readable format.
+                type: string
+                example: Permission denied.
+
+  parameters:
+    task:
+      name: id
+      in: query
+      required: true
+      description: The identifier of the exercise at hand.
+      schema:
+        type: string
+paths:
+  /exercises:
+    get:
+      summary: Get exercises
+      description: Get a history of exercises
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Exercise'
+    post:
+      summary: Create a exercise
+      description: Creates a new exercise
+      parameters:
+        - name: level
+          in: query
+          description: Level of exercise.
+          schema:
+            type: string
+            example: Medium
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    description: Returns the id of the new exercise.
+                    type: integer
+                    example: 23
+        '500':
+          $ref: '#/components/responses/error'
+  /exercises/{id}:
+    get:
+      description: Returns one exercise, mostly to try it out...
+      operationId: find exercise by id
+      parameters:
+        - name: id
+          in: path
+          description: ID of exercise to fetch
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: exercise response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Exercise'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error'
+      
