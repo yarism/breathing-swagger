@@ -12,7 +12,7 @@ components:
       properties:
         level:
           type: string
-          example: 'Easy'
+          example: 'easy'
           description: 'Exercise level'
         date:
           type: string
@@ -23,7 +23,7 @@ components:
       properties:
         name:
           type: string
-          example: 'Easy'
+          example: 'easy'
           description: 'Exercise level'
         inhale:
           type: integer
@@ -37,6 +37,17 @@ components:
           type: integer
           example: 60000          
           description: 'Duration'
+    User: 
+      type: object
+      properties:
+        name:
+          type: string
+          example: 'Olivia'
+          description: 'Name of the user'
+        current_level: #Maybe all references to level should be an id?
+          type: string
+          example: 'easy'
+          description: 'Which level the user is currently at'
   responses:
     error:
       description: ERROR
@@ -88,7 +99,7 @@ paths:
           description: Level of exercise.
           schema:
             type: string
-            example: Medium
+            example: medium #Unsure if we should send level, maybe picked up by BE
       responses:
         '200':
           description: OK
@@ -141,5 +152,19 @@ paths:
                 type: array
                 items: 
                   $ref: '#/components/schemas/Level'
+
+  /users/current:
+    get:
+      summary: Get the current user
+      description: Get the current user and relevant info about them
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/User'
     
       
