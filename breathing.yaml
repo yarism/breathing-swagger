@@ -18,7 +18,25 @@ components:
           type: string
           example: '2022-08-23T14:48:00'
           description: 'Date'
-
+    Level:
+      type: object
+      properties:
+        name:
+          type: string
+          example: 'Easy'
+          description: 'Exercise level'
+        inhale:
+          type: integer
+          example: 3000
+          description: 'The length of inhaling in ms'
+        exhale:
+          type: integer
+          example: 3000
+          description: 'The length of exhaling in ms'
+        duration:
+          type: integer
+          example: 60000          
+          description: 'Duration'
   responses:
     error:
       description: ERROR
@@ -110,4 +128,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/responses/error'
+  /levels:
+    get: 
+      summary: Get levels
+      description: Get all the levels and information about them
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Level'
+    
       
