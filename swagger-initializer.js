@@ -3,7 +3,7 @@ window.onload = function() {
 
   // the following lines will be replaced by docker/configurator, when it runs in a docker-container
   window.ui = SwaggerUIBundle({
-    url: "./breathing.yaml",
+    url: "https://raw.githack.com/yarism/breathing-swagger/main/breathing.yaml",
     dom_id: '#swagger-ui',
     deepLinking: true,
     presets: [
