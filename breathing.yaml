@@ -140,5 +140,9 @@ paths:
             application/json:
               schema:
                   $ref: '#/components/schemas/User'
+                  example: 
+                    name: 'Olivia'
+                    current_level: 'easy'
+
     
       
