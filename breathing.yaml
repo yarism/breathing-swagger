@@ -115,31 +115,6 @@ paths:
                     example: 23
         '500':
           $ref: '#/components/responses/error'
-  /exercises/{id}:
-    get:
-      description: Returns one exercise, mostly to try it out...
-      operationId: find exercise by id
-      parameters:
-        - name: id
-          in: path
-          description: ID of exercise to fetch
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: exercise response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Exercise'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/responses/error'
   /levels:
     get: 
       summary: Get levels
